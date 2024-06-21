@@ -60,6 +60,7 @@ async function signup(req, res) {
         // Create new user
         const newUser = new User(payload);
         await newUser.save();
+        
 
         res.status(201).json({
             data: newUser,

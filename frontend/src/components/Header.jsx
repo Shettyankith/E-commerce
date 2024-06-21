@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from "./Logo"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {toast} from 'react-toastify';
 import summaryAPI from "../common/index"
 import { setUserDetails } from '../../store/userSlice';
-
+import ROLE from '../common/role';
 
 function header() {
+  const [admin,setadmin]=useState(false);
   const user=useSelector(state=> state.user.user)
   const dispatch=useDispatch();
 
@@ -43,11 +44,24 @@ function header() {
         </div>
           
         <div className='flex justify-center items-center gap-10'>
-          <div className='text-3xl cursor-pointer'>
-            {
-              user?<img src={user.profilePic} alt={user.name} className='w-10 h-10 rounded-full border-black border-2'/>:<i className="fa-solid fa-circle-user"></i>
-            }
+          <div className='relative  flex justify-center' onClick={()=>{setadmin(!admin)}}>
+              {
+                user?._id && <div className='text-3xl cursor-pointer'>
+                {
+                  user?<img src={user.profilePic} alt={user.name} className='w-10 h-10 rounded-full border-black border-2'/>:<i className="fa-solid fa-circle-user"></i>
+                }
             
+              </div>
+              }
+              {
+                admin && user?.role === ROLE.ADMIN && 
+                  <div  className='absolute bg-white h-fit p-4 bottom-0 top-11 shadow-lg rounde w-fit hidden md:block '>
+                <nav>
+                  <Link to={"/admin-panel"} className='whitespace-nowrap hover:bg-slate-100 hover:p-1'>Admin panel</Link>
+                </nav>
+              </div>
+                
+              }
           </div>
           <div className='text-3xl cursor-pointer relative'>
             <span><i className="fa-solid fa-cart-shopping"></i></span>

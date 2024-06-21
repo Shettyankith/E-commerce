@@ -81,10 +81,10 @@ function SIgnup() {
 
 
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+            toast.error(error.message);
         }
     } else {
-        console.log("Password mismatched!");
+        toast.error('Password mismatched!');
     }
 }
 
@@ -200,7 +200,7 @@ function SIgnup() {
             </div>
           </div>
           
-          <button className="mt-4 bg-red-600 text-white font-medium w-full p-2 text-xl hover:bg-red-700">
+          <button type='submit' className="mt-4 bg-red-600 text-white font-medium w-full p-2 text-xl hover:bg-red-700">
             Sign Up
           </button>
         </form>

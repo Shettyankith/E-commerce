@@ -1,0 +1,7 @@
+.userTable th{
+    @apply border bg-white;   
+}
+
+tr{
+    @apply bg-green-100  pb-5 m-2;
+}
