@@ -25,6 +25,18 @@ const summaryAPI={
         url:`${backendDomain}/updateUser`,
         method:"post",
     },
+    addProduct:{
+        url:`${backendDomain}/add-product`,
+        method:"post",
+    },
+    allProduct:{
+        url:`${backendDomain}/all-product`,
+        method:"get",
+    },
+    editProduct:{
+        url:`${backendDomain}/editProduct`,
+        method:"post",
+    },
 }
 
 export default summaryAPI;

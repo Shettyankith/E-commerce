@@ -32,8 +32,12 @@ function header() {
   return (
     <header className='h-16 shadow-md bg-white'>
       <div className='container max-auto h-full flex px-6 items-center justify-between'>
-        <div className=' '>
+        {/* <div className=' '>
          <Link to={"/"}> <Logo w={100} h={60}/></Link>
+        </div> */}
+
+        <div className='text-2xl font-semibold'>
+         <Link to={"/"} >UrbanUtopia</Link>
         </div>
 
         <div className='hidden lg:flex rounded-full item-center w-full justify-between max-w-sm focus-within:shadow-sm'>
