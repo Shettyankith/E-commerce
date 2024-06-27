@@ -37,6 +37,14 @@ const summaryAPI={
         url:`${backendDomain}/editProduct`,
         method:"post",
     },
+    categoryProduct:{
+        url:`${backendDomain}/category-product`,
+        method:"get",
+    },
+    categoryWiseProduct:{
+        url:`${backendDomain}/category-wise-product`,
+        method:"post",
+    },
 }
 
 export default summaryAPI;

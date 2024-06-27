@@ -41,7 +41,7 @@ function App() {
       <Context.Provider value={{ fetchUserDetail }}>
         <ToastContainer />
         <Header />
-        <main className='min-h-[calc(100vh-160px)]'>
+        <main className='min-h-[calc(100vh-160px)] pt-16'>
           <Outlet />
         </main>
         <Footer />

@@ -10,6 +10,8 @@ const updateUser=require("../controllers/user/updateUser")
 const addProduct=require("../controllers/product/addProduct")
 const displayProduct=require("../controllers/product/displayProduct")
 const editProduct=require("../controllers/product/editProduct")
+const categoryProduct=require("../controllers/product/categoryProduct")
+const categoryWiseProduct=require("../controllers/product/categoryWiseProduct")
 
 router.post("/signup",signup);
 
@@ -28,5 +30,9 @@ router.post("/add-product",decryptToken,addProduct);
 router.get("/all-product",displayProduct);
 
 router.post("/editProduct",decryptToken,editProduct);
+
+router.get("/category-product",categoryProduct);
+
+router.post("/category-wise-product",categoryWiseProduct);
 
 module.exports=router;

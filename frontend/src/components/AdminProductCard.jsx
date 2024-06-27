@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditProduct from "./editProduct";
+import formatPrice from "../helper/currencyConverter";
 
 function AdminProductCard({ data, fetchAllProduct }) {
   const [editProduct, seteditProduct] = useState(false);
@@ -18,7 +19,7 @@ function AdminProductCard({ data, fetchAllProduct }) {
         </div>
         <h3 className="text-ellipsis line-clamp-2">{data.productName}</h3>
         <div>
-          <p className="font-semibold">&#8377;{data.price}</p>
+          <p className="font-semibold">{formatPrice(data.price)}</p>
           <div
             className="w-fit py-1 px-2 cursor-pointer mb-auto rounded-full ml-auto bg-red-200 hover:bg-red-400 transition-all"
             onClick={() => seteditProduct(true)}

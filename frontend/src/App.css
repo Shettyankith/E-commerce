@@ -5,3 +5,8 @@
 tr{
     @apply bg-green-100  pb-5 m-2;
 }
+
+.scroller::-webkit-scrollbar{
+
+    display: none;
+}

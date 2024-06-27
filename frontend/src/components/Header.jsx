@@ -30,13 +30,13 @@ function header() {
     }
   }
   return (
-    <header className='h-16 shadow-md bg-white'>
+    <header className='h-16 shadow-md bg-white fixed w-full z-50'>
       <div className='container max-auto h-full flex px-6 items-center justify-between'>
         {/* <div className=' '>
          <Link to={"/"}> <Logo w={100} h={60}/></Link>
         </div> */}
 
-        <div className='text-2xl font-semibold'>
+        <div className='text-lg md:text-2xl font-semibold'>
          <Link to={"/"} >UrbanUtopia</Link>
         </div>
 
@@ -48,7 +48,7 @@ function header() {
         </div>
           
         <div className='flex justify-center items-center gap-10'>
-          <div className='relative  flex justify-center' onClick={()=>{setadmin(!admin)}}>
+          <div className='relative  flex justify-center hidden md:block' onClick={()=>{setadmin(!admin)}}>
               {
                 user?._id && <div className='text-3xl cursor-pointer'>
                 {
