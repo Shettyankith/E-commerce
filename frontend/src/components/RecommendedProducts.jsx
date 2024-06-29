@@ -4,7 +4,8 @@ import formatPrice from "../helper/currencyConverter";
 import { Link } from "react-router-dom";
 import addToCart from "../helper/addToCart";
 
-function verticalCard({ category, heading }) {
+
+function RecommendedProducts({ category, heading }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const loadingList = new Array(13).fill(null);
@@ -33,23 +34,10 @@ function verticalCard({ category, heading }) {
     <div className="container mx-auto  my-6 relative ">
       <h2 className="text-2xl font-semibold py-2">{heading}</h2>
 
-      {/* Scroll Buttons */}
-      <button
-        onClick={scrollLeft}
-        className="absolute left-0 bottom-40 transform mr-4 -translate-y-1/2 z-10 hidden md:block"
-      >
-        <i className="fa-solid fa-circle-chevron-left text-red-600 text-2xl"></i>
-      </button>
-      <button
-        onClick={scrollRight}
-        className="absolute right-0 bottom-40 transform -translate-y-1/2 z-10"
-      >
-        <i className="fa-solid fa-circle-chevron-right text-red-600 text-2xl hidden md:block"></i>
-      </button>
-
+      
       {/* Scrollable Content */}
       <div
-        className="flex justify-center gap-4 md:gap-6 overflow-x-scroll scroller transition-all"
+        className="flex justify-evenly gap-4 md:gap-6 flex-wrap"
         ref={scrollRef}
       >
         {loading
@@ -120,4 +108,4 @@ function verticalCard({ category, heading }) {
   );
 }
 
-export default verticalCard;
+export default RecommendedProducts;

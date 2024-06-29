@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import fetchCategoryProducts from "../helper/fetchCategoryProducts";
 import formatPrice from "../helper/currencyConverter";
+import { Link } from "react-router-dom";
+import addToCart from "../helper/addToCart";
 
 function HomeProductCards({ category, heading }) {
   const [data, setData] = useState([]);
@@ -81,7 +83,7 @@ function HomeProductCards({ category, heading }) {
             </div>
           ))
           : data.map((product, ind) => (
-              <div
+              <Link to={"product/"+product?._id}
                 className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white shadow-sm flex"
                 key={ind}
               >
@@ -107,11 +109,11 @@ function HomeProductCards({ category, heading }) {
                       {formatPrice(product?.price)}
                     </p>
                   </div>
-                  <button className="bg-red-500 hover:bg-red-600 transition-all p-1 text-sm rounded text-white font-medium">
+                  <button className="bg-red-500 hover:bg-red-600 transition-all p-1 text-sm rounded text-white font-medium" onClick={(e)=>addToCart(e,product?._id)}>
                     Add to cart
                   </button>
                 </div>
-              </div>
+              </Link>
             ))}
       </div>
     </div>

@@ -12,6 +12,7 @@ const displayProduct=require("../controllers/product/displayProduct")
 const editProduct=require("../controllers/product/editProduct")
 const categoryProduct=require("../controllers/product/categoryProduct")
 const categoryWiseProduct=require("../controllers/product/categoryWiseProduct")
+const getProductDetails=require("../controllers/product/getProductDetails")
 
 router.post("/signup",signup);
 
@@ -34,5 +35,7 @@ router.post("/editProduct",decryptToken,editProduct);
 router.get("/category-product",categoryProduct);
 
 router.post("/category-wise-product",categoryWiseProduct);
+
+router.post("/product-details",getProductDetails);
 
 module.exports=router;
