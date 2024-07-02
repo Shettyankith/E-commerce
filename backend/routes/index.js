@@ -13,6 +13,11 @@ const editProduct=require("../controllers/product/editProduct")
 const categoryProduct=require("../controllers/product/categoryProduct")
 const categoryWiseProduct=require("../controllers/product/categoryWiseProduct")
 const getProductDetails=require("../controllers/product/getProductDetails")
+const addToCart=require("../controllers/user/addToCart");
+const cartCount=require("../controllers/user/cartCount");
+const displayCart=require("../controllers/user/displayCart")
+const updateQuantity=require("../controllers/user/updateQuantity")
+const deleteCartProduct=require("../controllers/user/deleteCartProduct")
 
 router.post("/signup",signup);
 
@@ -37,5 +42,15 @@ router.get("/category-product",categoryProduct);
 router.post("/category-wise-product",categoryWiseProduct);
 
 router.post("/product-details",getProductDetails);
+
+router.post("/addtocart",decryptToken,addToCart);
+
+router.get("/cartCount",decryptToken,cartCount);
+
+router.get("/viewcart",decryptToken,displayCart);
+
+router.post("/updateQuantity",decryptToken,updateQuantity);
+
+router.post("/deleteCartProduct",decryptToken,deleteCartProduct);
 
 module.exports=router;

@@ -15,7 +15,6 @@ function Login() {
 
   const navigate=useNavigate();
   const tokenContext=useContext(Context);
-  console.log("Token context has",tokenContext)
 
   const saveData = (e) => {
     const { name, value } = e.target;
@@ -42,6 +41,7 @@ function Login() {
     toast.success(loginData.message);
     navigate("/")
     tokenContext.fetchUserDetail();
+    tokenContext.fetchCartCount();
   }
 
   if(loginData.error){

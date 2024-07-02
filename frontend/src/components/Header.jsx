@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Logo from "./Logo"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,11 +6,14 @@ import {toast} from 'react-toastify';
 import summaryAPI from "../common/index"
 import { setUserDetails } from '../../store/userSlice';
 import ROLE from '../common/role';
+import context from '../context';
+
 
 function header() {
   const [admin,setadmin]=useState(false);
   const user=useSelector(state=> state.user.user)
   const dispatch=useDispatch();
+  const Context=useContext(context)
 
   const handleLogout=async()=>{
     const response=await fetch(summaryAPI.logout.url,{
@@ -29,6 +32,7 @@ function header() {
       toast.error(data.message);
     }
   }
+ 
   return (
     <header className='h-16 shadow-md bg-white fixed w-full z-50'>
       <div className='container max-auto h-full flex px-6 items-center justify-between'>
@@ -67,13 +71,19 @@ function header() {
                 
               }
           </div>
-          <div className='text-3xl cursor-pointer relative'>
-            <span><i className="fa-solid fa-cart-shopping"></i></span>
-            <div className='bg-red-600 text-white h-7 w-full flex justify-center items-center text-lg rounded-full p-1 absolute -top-2 -right-6'>
-              <p>0</p>
-            </div>
-          </div>
-          <div className='bg-red-600 px-6 font-medium py-2  text-white hover:bg-red-700 transition text-lg' >
+          
+            {
+              user?._id && (
+                <Link to={"cart"} className='text-3xl cursor-pointer relative'>
+                     <span><i className="fa-solid fa-cart-shopping"></i></span> 
+                     <div className='bg-red-600 text-white h-7 w-full flex justify-center items-center text-lg rounded-full p-1 absolute -top-2 -right-6'>
+                        <p>{Context?.cartCount}</p>
+                      </div>
+                </Link>)
+            }
+           
+        
+          <div className='bg-red-600 md:px-6  p-2 font-medium md:py-2  text-white hover:bg-red-700 transition text-lg rounded' >
             {
               user?._id? <button  onClick={handleLogout}>Logout</button>:<Link to={"/login"}><i className="fa-solid fa-arrow-right-to-bracket"></i> Login</Link>
 

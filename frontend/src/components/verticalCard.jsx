@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,useContext } from "react";
 import fetchCategoryProducts from "../helper/fetchCategoryProducts";
 import formatPrice from "../helper/currencyConverter";
 import { Link } from "react-router-dom";
 import addToCart from "../helper/addToCart";
+import context from "../context";
 
 function verticalCard({ category, heading }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const loadingList = new Array(13).fill(null);
   const scrollRef = useRef();
+  const Context=useContext(context);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -24,6 +26,11 @@ function verticalCard({ category, heading }) {
   const scrollLeft = () => {
     scrollRef.current.scrollLeft -= 300;
   };
+
+  const handleAddToCart=async(e,id)=>{
+    await addToCart(e,id);
+    Context.fetchCartCount();
+  }
 
   useEffect(() => {
     fetchProducts();
@@ -109,7 +116,7 @@ function verticalCard({ category, heading }) {
                       {formatPrice(product?.price)}
                     </p>
                   </div>
-                  <button className="bg-red-500 hover:bg-red-600 transition-all p-1 text-sm rounded text-white font-medium"  onClick={(e)=>addToCart(e,product?._id)}>
+                  <button className="bg-red-500 hover:bg-red-600 transition-all p-1 text-sm rounded text-white font-medium"  onClick={(e)=>handleAddToCart(e,product?._id)}>
                     Add to cart
                   </button>
                 </div>

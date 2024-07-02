@@ -49,6 +49,26 @@ const summaryAPI={
         url:`${backendDomain}/product-details`,
         method:"post",
     },
+    addToCart:{
+        url:`${backendDomain}/addtocart`,
+        method:"post",
+    },
+    cartCount:{
+        url:`${backendDomain}/cartCount`,
+        method:"get",
+    },
+    dsiplayCart:{
+        url:`${backendDomain}/viewcart`,
+        method:"get",
+    },
+    updateQuantity:{
+        url:`${backendDomain}/updateQuantity`,
+        method:"post",
+    }, 
+    deleteCartProduct:{
+        url:`${backendDomain}/deleteCartProduct`,
+        method:"post",
+    }, 
 }
 
 export default summaryAPI;
