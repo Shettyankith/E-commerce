@@ -1,43 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import fetchCategoryProducts from "../helper/fetchCategoryProducts";
+import React, { useRef } from 'react';
 import formatPrice from "../helper/currencyConverter";
 import { Link } from "react-router-dom";
 import addToCart from "../helper/addToCart";
 
-
-function RecommendedProducts({ category, heading }) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const loadingList = new Array(13).fill(null);
-  const scrollRef = useRef();
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    const productData = await fetchCategoryProducts(category);
-    setLoading(false);
-    setData(productData?.data);
-  };
-
-  const scrollRight = () => {
-    scrollRef.current.scrollLeft += 300;
-  };
-
-  const scrollLeft = () => {
-    scrollRef.current.scrollLeft -= 300;
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
+function searchBarCard({loading,data=[]}) {
+    const loadingList = new Array(13).fill(null);
+    const scrollRef = useRef();
   return (
-    <div className="container mx-auto  my-6 relative ">
-      <h2 className="text-2xl font-semibold py-2">{heading}</h2>
-
-      
-      {/* Scrollable Content */}
-      <div
-        className="flex justify-evenly gap-4 md:gap-6 flex-wrap"
+    <div
+        className="flex justify-evenly gap-4 md:gap-6 flex-wrap "
         ref={scrollRef}
       >
         {loading
@@ -72,7 +43,7 @@ function RecommendedProducts({ category, heading }) {
           ))
           : data.map((product, ind) => (
               <Link to={"/product/"+product?._id}
-                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white shadow-sm "
+                className="w-full min-w-[280px] md:min-w-[300px] max-w-[280px] md:max-w-[310px]  bg-white shadow-sm "
                 onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}
                 key={ind}
               >
@@ -105,8 +76,7 @@ function RecommendedProducts({ category, heading }) {
               </Link>
             ))}
       </div>
-    </div>
-  );
+  )
 }
 
-export default RecommendedProducts;
+export default searchBarCard

@@ -69,6 +69,10 @@ const summaryAPI={
         url:`${backendDomain}/deleteCartProduct`,
         method:"post",
     }, 
+    searchBar:{
+        url:`${backendDomain}/search`,
+        method:"get",
+    }, 
 }
 
 export default summaryAPI;

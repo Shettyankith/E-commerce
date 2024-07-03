@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Logo from "./Logo"
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {toast} from 'react-toastify';
 import summaryAPI from "../common/index"
@@ -14,6 +14,11 @@ function header() {
   const user=useSelector(state=> state.user.user)
   const dispatch=useDispatch();
   const Context=useContext(context)
+  const navigate=useNavigate();
+  const searchInput=useLocation();
+  const [search,setsearch]=useState(searchInput?.search?.split("=")[1])
+
+  console.log("sea",)
 
   const handleLogout=async()=>{
     const response=await fetch(summaryAPI.logout.url,{
@@ -32,6 +37,16 @@ function header() {
       toast.error(data.message);
     }
   }
+
+  const handleSearch=(e)=>{
+    const {value}=e.target;
+    setsearch(value);
+    if(value){
+      navigate(`/search?q=${value}`);
+    }else{
+      navigate(`/search`);
+    }
+  }
  
   return (
     <header className='h-16 shadow-md bg-white fixed w-full z-50'>
@@ -45,8 +60,8 @@ function header() {
         </div>
 
         <div className='hidden lg:flex rounded-full item-center w-full justify-between max-w-sm focus-within:shadow-sm'>
-          <input className='border w-full outline-none rounded-l-full pl-2' type="text" placeholder='Search product here...'/>
-          <div className='text-lg bg-red-600 min-w-[50px] flex items-center justify-center h-8 rounded-r-full text-white  '>
+          <input className='border w-full outline-none rounded-l-full pl-2 p-2' type="text" placeholder='Search product here...' onChange={handleSearch} value={search}/>
+          <div className='text-lg bg-red-600 min-w-[50px] flex items-center justify-center h-10 rounded-r-full text-white  cursor-pointer'>
           <i className="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>

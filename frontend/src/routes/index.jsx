@@ -10,6 +10,7 @@ import AllUsers from "../pages/AllUsers"
 import CategoryPage from "../pages/CategoryPage"
 import ProductDetails from "../pages/ProductDetails"
 import Cart from "../pages/Cart"
+import SearchBar from "../pages/SearchBar"
 const router=createBrowserRouter([
     {
         path:"/",
@@ -42,6 +43,10 @@ const router=createBrowserRouter([
             {
                 path:"cart",
                 element:<Cart/>
+            },
+            {
+                path:"search",
+                element:<SearchBar/>
             },
             {
                 path:"admin-panel",

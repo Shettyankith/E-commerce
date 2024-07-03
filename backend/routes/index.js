@@ -18,6 +18,7 @@ const cartCount=require("../controllers/user/cartCount");
 const displayCart=require("../controllers/user/displayCart")
 const updateQuantity=require("../controllers/user/updateQuantity")
 const deleteCartProduct=require("../controllers/user/deleteCartProduct")
+const searchBar=require("../controllers/product/searchBar")
 
 router.post("/signup",signup);
 
@@ -52,5 +53,7 @@ router.get("/viewcart",decryptToken,displayCart);
 router.post("/updateQuantity",decryptToken,updateQuantity);
 
 router.post("/deleteCartProduct",decryptToken,deleteCartProduct);
+
+router.get("/search",searchBar);
 
 module.exports=router;
