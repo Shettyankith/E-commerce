@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-import LoginImage from "../assest/signin.gif";
-import LoginImage2 from "../assest/signin3.gif";
 import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import summaryAPI from "../common/index"
+import LoginImage from "../assest/loginImage.gif"
 import Context from "../context";
 
 function Login() {
@@ -55,8 +54,8 @@ function Login() {
     <section id="login">
       <div className="mx-auto container p-4 mt-10 w-full  max-w-md bg-white">
         <div className="   mx-auto p-2">
-          <div className="w-20 h-20 mx-auto">
-            <img src={LoginImage2} alt="image" />
+          <div className="w-24 h-24 mx-auto bg-slate-200 rounded-full">
+            <img src={LoginImage} alt="image" />
           </div>
         </div>
 

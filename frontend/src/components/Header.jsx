@@ -16,9 +16,11 @@ function header() {
   const Context=useContext(context)
   const navigate=useNavigate();
   const searchInput=useLocation();
-  const [search,setsearch]=useState(searchInput?.search?.split("=")[1])
+  const URLSearch=new URLSearchParams(searchInput?.search);
+  const searchQuery=URLSearch.getAll('q');
+  const [search,setsearch]=useState(searchQuery);
 
-  console.log("sea",)
+
 
   const handleLogout=async()=>{
     const response=await fetch(summaryAPI.logout.url,{
@@ -36,6 +38,7 @@ function header() {
     if(data.error){
       toast.error(data.message);
     }
+    navigate("/")
   }
 
   const handleSearch=(e)=>{
@@ -80,7 +83,7 @@ function header() {
                 admin && user?.role === ROLE.ADMIN && 
                   <div  className='absolute bg-white h-fit p-4 bottom-0 top-11 shadow-lg rounde w-fit hidden md:block '>
                 <nav>
-                  <Link to={"/admin-panel"} className='whitespace-nowrap hover:bg-slate-100 hover:p-1'>Admin panel</Link>
+                  <Link to={"/admin-panel/all-products"} className='whitespace-nowrap hover:bg-slate-100 hover:p-1'>Admin panel</Link>
                 </nav>
               </div>
                 

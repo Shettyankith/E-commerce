@@ -35,7 +35,7 @@ function CategoryProduct() {
         ):
         (categotyProduct.map((product, index) => {
           return (
-            <Link to={"/category-item/"+product?.category} className="cursor-pointe " key={index}>
+            <Link to={"/category-item?category="+product?.category} className="cursor-pointe " key={index}>
               <div className="w-16 h-16 md:w-20 md:h-20 r rounded-full overflow-hidden p-4  bg-white flex items-center justify-center ">
                 <img
                   src={product?.productImage[0]}

@@ -91,7 +91,7 @@ function verticalCard({ category, heading }) {
           ))
           : data.map((product, ind) => (
               <Link to={"product/"+product?._id}
-                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white shadow-sm "
+                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white shadow-sm " onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}
                 key={ind}
               >
                 <div className="bg-slate-200 p-2 h-48 min-w-[280px] md:min-w-[145px] flex justify-center items-center">

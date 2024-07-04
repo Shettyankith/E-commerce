@@ -1,4 +1,7 @@
 const formatPrice = (price) => {
+    if (price == null) {
+        return "N/A";
+    }
     return price.toLocaleString('en-IN', {
         style: 'currency',
         currency: 'INR',

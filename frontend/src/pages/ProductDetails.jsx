@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback,useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import summaryAPI from "../common/index";
 import currencyCoverter from "../helper/currencyConverter";
-import VerticalCard from "../components/verticalCard"
 import RecommendedProducts from "../components/RecommendedProducts";
+import context from "../context";
+import addToCart from "../helper/addToCart";
 
 function ProductDetails() {
   const [data, setData] = useState({
@@ -20,6 +21,8 @@ function ProductDetails() {
   const [loading, setloading] = useState(false);
   const loadingImageList = new Array(4).fill(null);
   const [activeImage, setactiveImage] = useState("");
+  const Context=useContext(context);
+  const navigate=useNavigate();
   const [coordinate, setcoordinate] = useState({
     x: 0,
     y: 0,
@@ -72,6 +75,17 @@ function ProductDetails() {
   useEffect(() => {
     fetchProductDetails();
   }, [params.id]);
+
+  const handleAddToCart=async(e,id)=>{
+    await addToCart(e,id);
+    Context.fetchCartCount();
+  }
+
+  const handleBuyButton=async(e,id)=>{
+    await addToCart(e,id);
+    Context.fetchCartCount();
+    navigate("/cart")
+  }
 
   return (
     <div className="container mx-auto p-4 mt-8">
@@ -187,10 +201,12 @@ function ProductDetails() {
             </div>
 
             <div className="gap-4">
-              <button className="text-red-500 p-2 rounded border-red-500 font-medium border-2 border mx-3 transition-all hover:bg-red-500 hover:text-white">
+              <button className="text-red-500 p-2 rounded border-red-500 font-medium border-2 border mx-3 transition-all hover:bg-red-500 hover:text-white"
+              onClick={(e)=>{handleBuyButton(e,data?._id)}}
+              >
                 Buy Now
               </button>
-              <button className="bg-red-500 text-white rounded  p-2  font-medium mx-3 transition-all hover:bg-slate-100 hover:text-red-500 hover:border-2 hover:border-red-500">
+              <button className="bg-red-500 text-white rounded  p-2  font-medium mx-3 transition-all hover:bg-slate-100 hover:text-red-500 hover:border-2 hover:border-red-500" onClick={(e)=>{handleAddToCart(e,data?._id)}}>
                 Add To Cart
               </button>
             </div>

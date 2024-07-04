@@ -13,7 +13,7 @@ function Cart() {
   const loadingCart = new Array(Context.cartCount).fill(null);
 
   const fetchCartProducts = async () => {
-    setloading(true);
+    setloading(true)
     const response = await fetch(summaryAPI.dsiplayCart.url, {
       method: summaryAPI.dsiplayCart.method,
       credentials: "include",
@@ -27,7 +27,7 @@ function Cart() {
     if (data.success) {
       setdata(data.data);
     }
-    setloading(false);
+    setloading(false)
   };
 
   //Increase product quantity
@@ -92,6 +92,7 @@ function Cart() {
         fetchCartProducts();
       }
   }
+
 
   useEffect(() => {
     fetchCartProducts();
