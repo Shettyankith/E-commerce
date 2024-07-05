@@ -62,7 +62,7 @@ function SIgnup() {
 
             // Convert the response to JSON
             const userData = await response.json();
-            console.log(userData)
+            
 
             
             if (userData.success === true) {
@@ -146,7 +146,7 @@ function SIgnup() {
 
           <div className="mt-4">
             <label htmlFor="password">Password</label>
-            <div className="flex  justify-center items-center">
+            <div className="flex bg-slate-100 justify-center items-center -p-2">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -155,7 +155,7 @@ function SIgnup() {
                 value={data.password}
                 onChange={saveData}
                 placeholder="Password"
-                className=" bg-slate-100 m-2 ml-0 w-full outline-none p-2"
+                className=" bg-slate-100 m-2 ml-0 w-full outline-none px-2"
               />
               <div className="cursor-pointer">
                 <span>
@@ -174,7 +174,7 @@ function SIgnup() {
 
           <div className="mt-4">
             <label htmlFor="password">Confirm Password</label>
-            <div className="flex  justify-center items-center">
+            <div className="flex bg-slate-100 justify-center items-center -p-2">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
@@ -183,7 +183,7 @@ function SIgnup() {
                 value={data.confirmPassword}
                 onChange={saveData}
                 placeholder="Re-enter password"
-                className=" bg-slate-100 m-2 ml-0 w-full outline-none p-2"
+                className=" bg-slate-100 m-2 ml-0 w-full outline-none px-2"
               />
               <div className="cursor-pointer">
                 <span>

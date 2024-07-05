@@ -78,7 +78,7 @@ function Login() {
 
           <div className="mt-4">
             <label htmlFor="password">Password</label>
-            <div className="flex  justify-center items-center">
+            <div className="flex bg-slate-100 justify-center items-center -p-2">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -87,12 +87,12 @@ function Login() {
                 value={data.password}
                 onChange={saveData}
                 placeholder="Password"
-                className=" bg-slate-100 m-2 ml-0 w-full outline-none p-2"
+                className="bg-slate-100 m-2 ml-0 w-full outline-none px-2"
               />
               <div className="cursor-pointer">
                 <span>
                   <i
-                    class={
+                    className={
                       showPassword
                         ? "fa-solid fa-eye pr-2"
                         : "fa-solid fa-eye-slash pr-2"

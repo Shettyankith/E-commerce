@@ -52,14 +52,14 @@ function header() {
   }
  
   return (
-    <header className='h-16 shadow-md bg-white fixed w-full z-50'>
-      <div className='container max-auto h-full flex px-6 items-center justify-between'>
+    <header className='h-16 shadow-md  fixed w-full z-50 bg-white '>
+      <div className='container max-auto h-full flex px-6 items-center justify-between mx-auto  w-full'>
         {/* <div className=' '>
          <Link to={"/"}> <Logo w={100} h={60}/></Link>
         </div> */}
 
-        <div className='text-lg md:text-2xl font-semibold'>
-         <Link to={"/"} >UrbanUtopia</Link>
+        <div className='text-xl md:text-3xl font-semibold italic'>
+         <Link to={"/"}><i className="fa-brands fa-deviantart mr-1"></i>DigiMart</Link>
         </div>
 
         <div className='hidden lg:flex rounded-full item-center w-full justify-between max-w-sm focus-within:shadow-sm'>
@@ -74,7 +74,7 @@ function header() {
               {
                 user?._id && <div className='text-3xl cursor-pointer'>
                 {
-                  user?<img src={user.profilePic} alt={user.name} className='w-10 h-10 rounded-full border-black border-2'/>:<i className="fa-solid fa-circle-user"></i>
+                  user.profilePic?<img src={user.profilePic} alt={user.name} className='w-10 h-10 rounded-full border-black border-2'/>:<i className="fa-solid fa-circle-user"></i>
                 }
             
               </div>

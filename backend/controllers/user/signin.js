@@ -12,7 +12,7 @@ async function signup(req, res) {
             return res.status(400).json({
                 error: true,
                 success: false,
-                message: "User with this email ID already exists! Try signing up with a new email ID."
+                message: "User with this email ID already exists! Try signing up with a different email ID."
             });
         }
 
@@ -66,7 +66,7 @@ async function signup(req, res) {
             data: newUser,
             success: true,
             error: false,
-            message: "User created successfully."
+            message: "User created successfully"
         });
     } catch (e) {
         console.log(e);

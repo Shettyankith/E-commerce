@@ -77,6 +77,10 @@ const summaryAPI={
         url:`${backendDomain}/filtered-products`,
         method:"post",
     }, 
+    forgotPassword:{
+        url:`${backendDomain}/forgot-password`,
+        method:"post",
+    }, 
 }
 
 export default summaryAPI;

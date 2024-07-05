@@ -5,13 +5,12 @@ import CategoryCard from '../components/CategoryCard.jsx'
 import summaryAPI from '../common/index.js';
 
 
-function CategoryPage() {
+function MobileFilter({filterOn,setfilterOn}) {
   
   const [data,setdata]=useState([]);
   const [loading,setloading]=useState(false);
-  const [filterOn,setfilterOn]=useState(true);
-  const navigate=useNavigate();
   const [filteredList,setfilteredList]=useState([]);
+  const navigate=useNavigate();
   const url=useLocation();
   const [sortBy,setsortBy]=useState("");
   const urlSearch=new URLSearchParams(url.search);
@@ -92,19 +91,15 @@ function CategoryPage() {
 
       },[sortBy])
 
-      const handleClose=()=>{
-        setfilterOn(!filterOn)
-      }
-
   return (
-    <div className='container mx-auto p-4 relative'>
+    <div className='container mx-auto p-4'>
         {/* Desktop version */}
         <div className='hidden md:grid md:grid-cols-[200px,1fr]'>
             {/* Left side */}
             <div className='hidden md:block bg-white p-2 min-h-[calc(100vh-180px)] overflow-y-scroll scroller'>
                 {/* Sort By */}
                 <div>
-                 
+                  <p><i className="fa-solid fa-angle-right flex justify-end"></i></p>
                   <h3 className='text-base text-slate-500 uppercase font-medium border-b-2 pb-1'>sort by</h3>
                   <form action="" className='text-sm flex flex-col gap-2 py-2'>
                     <div className='flex items-center gap-2 text-lg capitalize'>
@@ -135,13 +130,8 @@ function CategoryPage() {
                   </form>
                 </div>
             </div>
-            {/* Right side */}
-            <div className='max-h-[calc(100vh-180px)]  overflow-y-scroll scroller '>
-              <p className='text-xl font-medium my-2 ml-16'>Search Results:{data.length}</p>
-                    { 
-                      data.length!==0 && <CategoryCard data={data} loading={loading}/>
-                    }
-            </div>
+            
+            
         </div>
 
         {/* Mobile version */}
@@ -150,7 +140,7 @@ function CategoryPage() {
             <div className='hidden md:block bg-white p-2 min-h-[calc(100vh-180px)] overflow-y-scroll scroller'>
                 {/* Sort By */}
                 <div>
-                  
+                  <p><i className="fa-solid fa-angle-right flex justify-end"></i></p>
                   <h3 className='text-base text-slate-500 uppercase font-medium border-b-2 pb-1'>sort by</h3>
                   <form action="" className='text-sm flex flex-col gap-2 py-2'>
                     <div className='flex items-center gap-2 text-lg capitalize'>
@@ -183,58 +173,14 @@ function CategoryPage() {
             </div>
             {/* Right side */}
             <div className='max-h-[calc(100vh-100px)]  overflow-y-scroll scroller '>
-              <button className='md:hidden bg-red-500 text-white px-2 py-1' onClick={()=>{setfilterOn(true)}}>Filter <i className="fa-solid fa-filter"></i></button>
               <p className='text-xl font-medium my-2 ml-16'>Search Results:{data.length}</p>
                     { 
                       data.length!==0 && <CategoryCard data={data} loading={loading}/>
                     }
             </div>
-
-            {
-              filterOn && (
-                <div className='absolute bg-white top-0 bottom-0 left-0 right-0 h-full overflow-y-scroll scroller p-3'>
-                  {/* Mobile sort bgy */}
-                  <div>
-
-                  
-                <p onClick={handleClose}><i className="fa-regular fa-rectangle-xmark flex justify-end m-2"></i></p>
-                <h3 className='text-base text-slate-500 uppercase font-medium border-b-2 pb-1'>sort by</h3>
-                <form action="" className='text-sm flex flex-col gap-2 py-2'>
-                  <div className='flex items-center gap-2 text-lg capitalize'>
-                    <input type="radio" name="sortBy" id='asc' value={"asc"} onChange={handleSortBy} checked={sortBy==="asc"}/>
-                    <label htmlFor="asc">Price:Low to High</label>
-                  </div>
-                  <div className='flex items-center gap-2 text-lg capitalize'>
-                    <input type="radio" name="sortBy" id='dsc'  value={"dsc"}  onChange={handleSortBy} checked={sortBy==="dsc"}/>
-                    <label htmlFor="dsc">Price:High to Low</label>
-                  </div>
-                </form>
-
-                
-                </div>
-
-                {/* Mobile filter by */}
-                <div>
-                  <h3 className='text-base text-slate-500 uppercase font-medium border-b-2 pb-1'>Category </h3>
-                  <form action="" className='text-sm flex flex-col gap-2 py-2'>
-                    {
-                      ProductCategory.map((category,ind)=>{
-                        return(
-                          <div key={ind} className='flex items-center gap-2 text-lg capitalize'>
-                            <input type="checkbox" name="category" value={category?.value} checked={selectCategory[category?.value]} id={category?.value} onChange={handleCategoryOnchange}/>
-                            <label htmlFor={category?.value}>{category?.value}</label>
-                          </div>
-                        )
-                      })
-                    }
-                  </form>
-                </div>
-              </div>
-              )
-            }
         </div>
     </div>
   )
 }
 
-export default CategoryPage
+export default MobileFilter

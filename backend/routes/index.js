@@ -20,6 +20,7 @@ const updateQuantity=require("../controllers/user/updateQuantity")
 const deleteCartProduct=require("../controllers/user/deleteCartProduct")
 const searchBar=require("../controllers/product/searchBar")
 const filterBy=require("../controllers/product/filterBy")
+const forgotPassword=require("../controllers/user/forgotPassword")
 
 router.post("/signup",signup);
 
@@ -58,5 +59,7 @@ router.post("/deleteCartProduct",decryptToken,deleteCartProduct);
 router.get("/search",searchBar);
 
 router.post("/filtered-products",filterBy);
+
+router.post("/forgot-password",forgotPassword);
 
 module.exports=router;

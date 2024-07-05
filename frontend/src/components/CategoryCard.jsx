@@ -1,68 +1,22 @@
-import React, { useEffect, useRef, useState,useContext } from "react";
-import fetchCategoryProducts from "../helper/fetchCategoryProducts";
+
+
+import React, { useRef } from 'react';
 import formatPrice from "../helper/currencyConverter";
 import { Link } from "react-router-dom";
 import addToCart from "../helper/addToCart";
-import context from "../context";
 
-function verticalCard({ category, heading }) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const loadingList = new Array(13).fill(null);
-  const scrollRef = useRef();
-  const Context=useContext(context);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    const productData = await fetchCategoryProducts(category);
-    setLoading(false);
-    setData(productData?.data);
-  };
-
-  const scrollRight = () => {
-    scrollRef.current.scrollLeft += 300;
-  };
-
-  const scrollLeft = () => {
-    scrollRef.current.scrollLeft -= 300;
-  };
-
-  const handleAddToCart=async(e,id)=>{
-    await addToCart(e,id);
-    Context.fetchCartCount();
-  }
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
+function CategoryCard({loading,data=[]}) {
+    const loadingList = new Array(13).fill(null);
+    const scrollRef = useRef();
   return (
-    <div className="container mx-auto  my-6 relative px-4">
-      <h2 className="text-2xl font-semibold py-2">{heading}</h2>
-
-      {/* Scroll Buttons */}
-      <button
-        onClick={scrollLeft}
-        className="absolute left-0 bottom-40 transform mr-4 -translate-y-1/2 z-10 hidden md:block"
-      >
-        <i className="fa-solid fa-circle-chevron-left text-red-600 text-2xl"></i>
-      </button>
-      <button
-        onClick={scrollRight}
-        className="absolute right-0 bottom-40 transform -translate-y-1/2 z-10"
-      >
-        <i className="fa-solid fa-circle-chevron-right text-red-600 text-2xl hidden md:block"></i>
-      </button>
-
-      {/* Scrollable Content */}
-      <div
-        className="flex justify-center gap-4 md:gap-6 overflow-x-scroll scroller transition-all "
+    <div
+        className="flex justify-evenly gap-4 md:gap-6 flex-wrap "
         ref={scrollRef}
       >
         {loading
           ?  loadingList.map((product, ind) => (
             <div
-              className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white shadow-sm "
+              className="w-full min-w-[280px] md:min-w-[320px] max-w-[320px] md:max-w-[320px]  bg-white shadow-sm "
               key={ind}
             >
               <div className="bg-slate-200 p-2 h-48 min-w-[280px] md:min-w-[145px] flex justify-center items-center animate-pulse">
@@ -90,8 +44,9 @@ function verticalCard({ category, heading }) {
             </div>
           ))
           : data.map((product, ind) => (
-              <Link to={"product/"+product?._id}
-                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white shadow-sm " onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}
+              <Link to={"/product/"+product?._id}
+               className="w-full min-w-[280px] md:min-w-[320px] max-w-[320px] md:max-w-[320px]  bg-white shadow-sm "
+                onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}
                 key={ind}
               >
                 <div className="bg-slate-200 p-2 h-48 min-w-[280px] md:min-w-[145px] flex justify-center items-center">
@@ -116,15 +71,14 @@ function verticalCard({ category, heading }) {
                       {formatPrice(product?.price)}
                     </p>
                   </div>
-                  <button className="bg-red-500 hover:bg-red-600 transition-all p-1 text-sm rounded text-white font-medium"  onClick={(e)=>handleAddToCart(e,product?._id)}>
+                  <button className="bg-red-500 hover:bg-red-600 transition-all p-1 text-sm rounded text-white font-medium"  onClick={(e)=>addToCart(e,product?._id)}>
                     Add to cart
                   </button>
                 </div>
               </Link>
             ))}
       </div>
-    </div>
-  );
+  )
 }
 
-export default verticalCard;
+export default CategoryCard
